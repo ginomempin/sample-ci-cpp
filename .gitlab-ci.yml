@@ -1,9 +1,5 @@
 image: ubuntu:16.04
 
-stages:
-  - build
-  - test
-
 # TODO:
 # Create an Ubuntu image with all of these dependencies
 # already installed. This could save time because update
@@ -11,31 +7,16 @@ stages:
 # run tests, run app) triggered.
 before_script:
   - apt-get update --yes
-  - apt-get install --yes g++
+  - apt-get install --yes g++=4:5.3.1-1ubuntu1
+  - apt-get install --yes lcov=1.12-2
   - apt-get install --yes cmake=3.5.1-1ubuntu3
   - apt-get install --yes git=1:2.7.4-0ubuntu1.6
   - apt-get install --yes libpthread-stubs0-dev=0.3-4
-
-# Tell gitlab-runner to share the build/
-# directory in between jobs (because
-# this is where we store our CMake outputs)
-cache:
-  paths:
-    - build/
-
-build:
-  stage: build
-  tags:
-    - commonpf
-    - cpp
-    - build
-  script:
-    - cd build
-    - cmake ..
-    - make -j8
+  - cd build
+  - cmake ..
+  - make -j8
 
 run tests:
-  stage: test
   only:
     - master
   tags:
@@ -44,14 +25,9 @@ run tests:
     - tests
   script:
     - ./build/bin/calculator_tests
-
-run app:
-  stage: test
-  only:
-    - master
-  tags:
-    - commonpf
-    - cpp
-    - tests
-  script:
-    - ./build/bin/calculator
+    - cd Makefiles/
+    - cd calculator_tests.dir/
+    - lcov -d . -c -o coverage.info
+    - lcov -r coverage.info */googletest/* */tests/* */c++/* -o coverageFiltered.info
+    - lcov --list coverageFiltered.info
+  coverage: '/Total.*\s+(\d+%).*$/'

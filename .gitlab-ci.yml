@@ -4,6 +4,11 @@ stages:
   - build
   - test
 
+# TODO:
+# Create an Ubuntu image with all of these dependencies
+# already installed. This could save time because update
+# and install will need to be done everytime a job is
+# triggered.
 before_script:
   - apt-get update --yes
   - apt-get install --yes build-essential
@@ -39,3 +44,14 @@ run tests:
     - tests
   script:
     - ./build/bin/calculator_tests
+
+run app:
+  stage: test
+  only:
+    - master
+  tags:
+    - commonpf
+    - cpp
+    - tests
+  script:
+    - ./build/bin/calculator

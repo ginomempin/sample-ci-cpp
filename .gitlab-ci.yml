@@ -6,6 +6,7 @@ stages:
 
 before_script:
   - apt-get update --yes
+  - apt-get install --yes build-essential
   - apt-get install --yes cmake=3.5.1-1ubuntu3
   - apt-get install --yes git=1:2.7.4-0ubuntu1.6
   - apt-get install --yes libpthread-stubs0-dev=0.3-4

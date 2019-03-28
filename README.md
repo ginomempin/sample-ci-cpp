@@ -15,10 +15,11 @@
 * The main requirements are:
     * Ubuntu 16.04
     * `cmake 3.5.1`
-        * `gcc 5.4.0` (needed by CMake to compile `CXX` files)
+        * `g++ 5.4.0` (needed by CMake to compile `CXX` files)
     * `googletest 1.8.1`
         * `git 2.7.4` (for downloading `googletest` within CMake)
         * `libpthread-stubs0-dev 0.3-4` (for linking `pthread`)
+    * `lcov 1.12` (for generating code coverage)
     * Access to a Gitlab instance
     * Access to a build/test/server PC for `gitlab-runner`
 
@@ -28,16 +29,10 @@
     * Install `gcc`, `cmake`, `git`, and `pthread`
         ```
         $ sudo apt-get update
-
-        $ sudo apt-get install build-essential
-        $ gcc --version
-
+        $ sudo apt-get install g++=4:5.3.1-1ubuntu1
+        $ sudo apt-get install lcov=1.12-2
         $ sudo apt-get install cmake=3.5.1-1ubuntu3
-        $ cmake -version
-
         $ sudo apt-get install git=1:2.7.4-0ubuntu1.6
-        $ git --version
-
         $ sudo apt-get install libpthread-stubs0-dev=0.3-4
 
         ```

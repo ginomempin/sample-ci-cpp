@@ -25,8 +25,7 @@ run tests:
     - tests
   script:
     - ./bin/calculator_tests
-    - cd Makefiles/
-    - cd calculator_tests.dir/
+    - cd CMakefiles/calculator_tests.dir/
     - lcov -d . -c -o coverage.info
     - lcov -r coverage.info */googletest/* */tests/* */c++/* -o coverageFiltered.info
     - lcov --list coverageFiltered.info

@@ -16,6 +16,13 @@ before_script:
   - cmake ..
   - make -j8
 
+# Tell gitlab-runner to share the build/
+# directory in between jobs (because
+# this is where we store our CMake outputs)
+cache:
+  paths:
+    - build/
+
 run tests:
   only:
     - master
@@ -25,7 +32,9 @@ run tests:
     - tests
   script:
     - ./bin/calculator_tests
-    - cd CMakefiles/calculator_tests.dir/
+    - ls -l
+    - cd CMakeFiles/calculator_tests.dir/
+    - ls -l
     - lcov -d . -c -o coverage.info
     - lcov -r coverage.info */googletest/* */tests/* */c++/* -o coverageFiltered.info
     - lcov --list coverageFiltered.info

@@ -1,0 +1,31 @@
+image: ubuntu:16.04
+
+stages:
+  - build
+  - test
+
+cache:
+  paths:
+    - build/
+
+build:
+  stage: build
+  tags:
+    - commonpf
+    - cpp
+    - build
+  script:
+    - cd build
+    - cmake ..
+    - make
+
+run tests:
+  stage: test
+  only:
+    - master
+  tags:
+    - commonpf
+    - cpp
+    - tests
+  script:
+    - ./build/bin/calculator_tests

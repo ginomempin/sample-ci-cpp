@@ -24,7 +24,7 @@ run tests:
     - cpp
     - tests
   script:
-    - ./build/bin/calculator_tests
+    - ./bin/calculator_tests
     - cd Makefiles/
     - cd calculator_tests.dir/
     - lcov -d . -c -o coverage.info

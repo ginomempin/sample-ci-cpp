@@ -15,6 +15,7 @@ before_script:
   - cd build
   - cmake ..
   - make -j8
+  - make rebuild_cache
 
 # Tell gitlab-runner to share the build/
 # directory in between jobs (because

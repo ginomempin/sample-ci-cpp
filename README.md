@@ -100,6 +100,16 @@
         [  PASSED  ] 3 tests.
 
         ```
+* Manually Checking Code Coverage
+    * Run */bin/calculator_tests*
+    * Using `lcov`
+        ```
+        $ cd CMakeFiles/calculator_tests.dir/
+        $ lcov -d . -c -o coverage.info
+        $ lcov -r coverage.info */googletest/* */tests/* */c++/* -o coverageFiltered.info
+        $ lcov --list coverageFiltered.info
+
+        ```
 
 ## ISSUES
 
@@ -137,6 +147,8 @@
 * On Setting-Up GoogleTest
     * [GoogleTest Primer](https://github.com/google/googletest/blob/master/googletest/docs/primer.md)
     * [How to start working with GTest and CMake](https://stackoverflow.com/q/8507723/2745495)
+* On Setting-Up lcov
+    * [Build a C ++ Practical Unit Test Environment with GoogleTest + CMake](https://qiita.com/imasaaki/items/0021d1ef14660184f396)
 * On Setting-Up Gitlab CI
     * [Getting started with GitLab CI](http://192.168.1.61/help/ci/quick_start/README)
     * [Installing a Gitlab Runner](https://docs.gitlab.com/runner/install/)

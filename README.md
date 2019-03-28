@@ -11,7 +11,7 @@
 ## DEPENDENCIES
 
 * The main requirements are:
-    * [cmake 3.5](https://cmake.org/) for building the application
+    * [cmake 3.5.1](https://cmake.org/) for building the application
     * [googletest 1.8.1](https://github.com/google/googletest) for running unit tests
         * Requires `pthread`
     * Access to a Gitlab instance

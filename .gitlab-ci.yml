@@ -6,7 +6,7 @@ stages:
 
 before_script:
   - apt-get update --yes
-  - apt-get install --yes cmake=3.5.3
+  - apt-get install --yes cmake=3.5.1-1ubuntu3
 
 # Tell gitlab-runner to share the build/
 # directory in between jobs (because

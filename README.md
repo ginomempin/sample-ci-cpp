@@ -11,9 +11,11 @@
 ## DEPENDENCIES
 
 * The main requirements are:
-    * [cmake 3.5.1](https://cmake.org/) for building the application
-    * [googletest 1.8.1](https://github.com/google/googletest) for running unit tests
-        * Requires `pthread`
+    * Ubuntu 16.04
+    * `cmake 3.5.1`
+    * `googletest 1.8.1`
+        * `git 2.7.4` (for downloading `googletest` within CMake)
+        * `libpthread-stubs0-dev 0.3-4` (for running `googletest`)
     * Access to a Gitlab instance
     * Access to a build/test/server PC for `gitlab-runner`
 
@@ -104,7 +106,7 @@
 
 ## DOCUMENTATION
 
-* On Setting-Up CMake and GoogleTest
+* On Setting-Up CMake
     * [Introduction to CMake by Examples](http://derekmolloy.ie/hello-world-introductions-to-cmake/)
 * On Setting-Up GoogleTest
     * [GoogleTest Primer](https://github.com/google/googletest/blob/master/googletest/docs/primer.md)

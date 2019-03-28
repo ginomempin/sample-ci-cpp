@@ -10,10 +10,22 @@
 
 ## DEPENDENCIES
 
-* [CMake](https://cmake.org/)
+* The main requirements are:
+    * [cmake 3.5](https://cmake.org/) for building the application
+    * [googletest 1.8.1](https://github.com/google/googletest) for running unit tests
+        * Requires `pthread`
+    * Access to a Gitlab instance
+    * Access to a build/test/server PC for `gitlab-runner`
 
 ## SETUP
 
+* Setting-Up the Build Tools
+    * Install CMake
+        ```
+        $ sudo apt install cmake
+        $ cmake -version
+
+        ```
 * Setting-Up Gitlab CI
     * [Install a Gitlab Runner](https://docs.gitlab.com/runner/install/) on a publicly-accessible machine
     * [Register the Runner](https://docs.gitlab.com/runner/register/index.html) with your Gitlab instance
@@ -39,33 +51,64 @@
 ## USAGE
 
 * Manually Running the Tests on Local
-    * Build
+    * Build the application
         ```
         $ cd build
         $ cmake ..
-        $ make
+        $ make help     # check available `make` targets
+
         ```
     * Run the application
         ```
+        $ make calculator
         $ ./bin/calculator
         SUM is 3
         QUOTIENT is 2
         Invalid div inputs.
+
         ```
     * Run the tests
         ```
-        TODO
+        $ make calculator_tests
+        $ ./bin/calculator_tests
+        [==========] Running 3 tests from 2 test cases.
+        [----------] Global test environment set-up.
+        [----------] 1 test from AddTest
+        [ RUN      ] AddTest.ValidNumbers
+        [       OK ] AddTest.ValidNumbers (0 ms)
+        [----------] 1 test from AddTest (0 ms total)
+
+        [----------] 2 tests from DivTest
+        [ RUN      ] DivTest.ValidNumbers
+        [       OK ] DivTest.ValidNumbers (0 ms)
+        [ RUN      ] DivTest.InvalidNumbers
+        [       OK ] DivTest.InvalidNumbers (0 ms)
+        [----------] 2 tests from DivTest (0 ms total)
+
+        [----------] Global test environment tear-down
+        [==========] 3 tests from 2 test cases ran. (1 ms total)
+        [  PASSED  ] 3 tests.
 
         ```
 
 ## ISSUES
 
-TODO
+* Need to reset the *build* directory
+    * Manually delete then re-create it
+        ```
+        $ rm -Rf build
+        $ mkdir build
+        $ touch .gitkeep
+
+        ```
 
 ## DOCUMENTATION
 
-* On Setting-Up CMake
+* On Setting-Up CMake and GoogleTest
     * [Introduction to CMake by Examples](http://derekmolloy.ie/hello-world-introductions-to-cmake/)
+* On Setting-Up GoogleTest
+    * [GoogleTest Primer](https://github.com/google/googletest/blob/master/googletest/docs/primer.md)
+    * [How to start working with GTest and CMake](https://stackoverflow.com/q/8507723/2745495)
 * On Setting-Up Gitlab CI
     * [Getting started with GitLab CI](http://192.168.1.61/help/ci/quick_start/README)
     * [Installing a Gitlab Runner](https://docs.gitlab.com/runner/install/)

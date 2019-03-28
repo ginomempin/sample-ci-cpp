@@ -16,6 +16,13 @@ bool Calculator::add(int addend1, int addend2)
     return true;
 }
 
+// This is for checking that code coverage will not be <100%
+bool Calculator::mul(int factor1, int factor2)
+{
+    m_lastResult = factor1 * factor2;
+    return true;
+}
+
 bool Calculator::div(int dividend, int divisor)
 {
     if (divisor == 0)

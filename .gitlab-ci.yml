@@ -12,18 +12,11 @@ before_script:
   - apt-get install --yes cmake=3.5.1-1ubuntu3
   - apt-get install --yes git=1:2.7.4-0ubuntu1.6
   - apt-get install --yes libpthread-stubs0-dev=0.3-4
-  - rm -Rf build
+  - rm -Rf build  # Guarantee that tests and coverage are using latest src and tests
   - mkdir build
   - cd build
   - cmake ..
   - make -j8
-
-# Tell gitlab-runner to share the build/
-# directory in between jobs (because
-# this is where we store our CMake outputs)
-cache:
-  paths:
-    - build/
 
 run tests:
   only:

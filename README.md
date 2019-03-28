@@ -113,8 +113,8 @@
 
 ## ISSUES
 
-* Need to reset the *build* directory
-    * Manually delete then re-create it
+* The tests and the code coverage does not seem to be using latest src and tests
+    * Delete the *build* directory then re-create it
         ```
         $ rm -Rf build
         $ mkdir build

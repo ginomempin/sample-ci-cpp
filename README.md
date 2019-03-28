@@ -10,7 +10,7 @@
 
 ## DEPENDENCIES
 
-TODO
+* [CMake](https://cmake.org/)
 
 ## SETUP
 
@@ -38,7 +38,25 @@ TODO
 
 ## USAGE
 
-TODO
+* Manually Running the Tests on Local
+    * Build
+        ```
+        $ cd build
+        $ cmake ..
+        $ make
+        ```
+    * Run the application
+        ```
+        $ ./bin/calculator
+        SUM is 3
+        QUOTIENT is 2
+        Invalid div inputs.
+        ```
+    * Run the tests
+        ```
+        TODO
+
+        ```
 
 ## ISSUES
 
@@ -46,6 +64,8 @@ TODO
 
 ## DOCUMENTATION
 
+* On Setting-Up CMake
+    * [Introduction to CMake by Examples](http://derekmolloy.ie/hello-world-introductions-to-cmake/)
 * On Setting-Up Gitlab CI
     * [Getting started with GitLab CI](http://192.168.1.61/help/ci/quick_start/README)
     * [Installing a Gitlab Runner](https://docs.gitlab.com/runner/install/)

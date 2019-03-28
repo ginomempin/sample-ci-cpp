@@ -4,6 +4,13 @@ stages:
   - build
   - test
 
+before_script:
+  - apt-get update --yes
+  - apt-get install --yes cmake=3.5.3
+
+# Tell gitlab-runner to share the build/
+# directory in between jobs (because
+# this is where we store our CMake outputs)
 cache:
   paths:
     - build/

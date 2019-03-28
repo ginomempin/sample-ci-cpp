@@ -1,6 +1,19 @@
 #include "Calculator.h"
 #include <gtest/gtest.h>
 
+TEST(DivTest, ValidNumbers) {
+    Calculator calc = Calculator();
+
+    ASSERT_TRUE(calc.div(10, 2));
+    ASSERT_EQ(5, calc.get_last_result());
+
+    ASSERT_TRUE(calc.div(-12, 3));
+    ASSERT_EQ(-4, calc.get_last_result());
+
+    ASSERT_TRUE(calc.div(12, -3));
+    ASSERT_EQ(-4, calc.get_last_result());
+}
+
 TEST(DivTest, InvalidNumbers) {
     Calculator calc = Calculator();
 

@@ -105,7 +105,7 @@
     * Using `lcov`
         ```
         $ cd CMakeFiles/calculator_tests.dir/
-        $ lcov -d . -c -o coverage.info
+        $ lcov --directory . --capture -o coverage.info
         $ lcov -r coverage.info */googletest/* */tests/* */c++/* -o coverageFiltered.info
         $ lcov --list coverageFiltered.info
 

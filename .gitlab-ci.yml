@@ -7,11 +7,11 @@ stages:
 # TODO:
 # Create an Ubuntu image with all of these dependencies
 # already installed. This could save time because update
-# and install will need to be done everytime a job is
-# triggered.
+# and install will need to be done for EACH job (build,
+# run tests, run app) triggered.
 before_script:
   - apt-get update --yes
-  - apt-get install --yes build-essential
+  - apt-get install --yes g++
   - apt-get install --yes cmake=3.5.1-1ubuntu3
   - apt-get install --yes git=1:2.7.4-0ubuntu1.6
   - apt-get install --yes libpthread-stubs0-dev=0.3-4
@@ -32,7 +32,7 @@ build:
   script:
     - cd build
     - cmake ..
-    - make
+    - make -j8
 
 run tests:
   stage: test

@@ -1,6 +1,13 @@
 cmake_minimum_required (VERSION 3.5.1)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_C_COMPILER    "gcc")
+set(CMAKE_CXX_COMPILER  "g++")
+set(CMAKE_CXX_STANDARD  14)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "lib")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "lib")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
+
 enable_testing()
 
 ########################################################################
@@ -55,10 +62,6 @@ set(APP_TESTER
 set(APP_TESTS
     "tests/CalculatorTest.cpp"
 )
-
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "lib")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "lib")
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin")
 
 project(${APP}
     VERSION 1.0.0

@@ -1,4 +1,4 @@
-image: ubuntu:16.04
+image: localhost:5000/cdpf-ubuntu:16.04
 
 # TODO:
 # Create an Ubuntu image with all of these dependencies

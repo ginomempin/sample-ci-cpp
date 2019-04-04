@@ -25,18 +25,33 @@
 
 ## SETUP
 
-* Setting-Up the Build Tools
-    * Install `gcc`, `cmake`, `git`, and `pthread`
-        ```
-        $ sudo apt-get update
-        $ sudo apt-get install g++=4:5.3.1-1ubuntu1
-        $ sudo apt-get install lcov=1.12-2
-        $ sudo apt-get install cmake=3.5.1-1ubuntu3
-        $ sudo apt-get install git=1:2.7.4-0ubuntu1.6
-        $ sudo apt-get install libpthread-stubs0-dev=0.3-4
+* Setup the Local Test Environment
+    * Using your own Ubuntu system
+        * Install `gcc`, `cmake`, `git`, and `pthread`
+            ```
+            $ sudo apt-get update
+            $ sudo apt-get install g++=4:5.3.1-1ubuntu1
+            $ sudo apt-get install lcov=1.12-2
+            $ sudo apt-get install cmake=3.5.1-1ubuntu3
+            $ sudo apt-get install git=1:2.7.4-0ubuntu1.6
+            $ sudo apt-get install libpthread-stubs0-dev=0.3-4
 
-        ```
-* Setting-Up Gitlab CI
+            ```
+        * Build the application and the tests
+            ```
+            $ cd build
+            $ cmake ..
+            $ make -j8
+
+            ```
+    * Using **Docker**
+        * Create a Docker image from the [Dockerfile](./Dockerfile)
+            ```
+            docker build --tag sample-ci-cpp .
+            docker run -it sample-ci-cpp:latest /bin/bash
+
+            ```
+* Setup Gitlab CI
     * [Install a Gitlab Runner](https://docs.gitlab.com/runner/install/) on a publicly-accessible machine
     * [Register the Runner](https://docs.gitlab.com/runner/register/index.html) with your Gitlab instance
         * Get the coordinator URL and registration tokens:
@@ -60,26 +75,10 @@
 
 ## USAGE
 
-* Manually Running the Tests on Local
-    * Build the application
-        ```
-        $ cd build
-        $ cmake ..
-        $ make help     # check available `make` targets
-
-        ```
-    * Run the application
-        ```
-        $ make calculator
-        $ ./bin/calculator
-        SUM is 3
-        QUOTIENT is 2
-        Invalid div inputs.
-
-        ```
+* Run the Tests on Local
     * Run the tests
         ```
-        $ make calculator_tests
+        $ cd build
         $ ./bin/calculator_tests
         [==========] Running 3 tests from 2 test cases.
         [----------] Global test environment set-up.
@@ -100,16 +99,22 @@
         [  PASSED  ] 3 tests.
 
         ```
-* Manually Checking Code Coverage
-    * Run */bin/calculator_tests*
-    * Using `lcov`
+    * Check code coverage
         ```
+        $ cd build
         $ cd CMakeFiles/calculator_tests.dir/
         $ lcov --directory . --capture -o coverage.info
         $ lcov -r coverage.info */build/* */tests/* */c++/* -o coverageFiltered.info
         $ lcov --list coverageFiltered.info
 
         ```
+* Run the Tests on Gitlab
+    * Make changes in *src/* and in *tests/*
+    * Make changes to the [.gitlab-ci.yml](./gitlab-ci.yml) configuration (if necessary)
+    * Commit the changes then push to Gitlab
+    * Go to the *Gitlab project* > *CI/CD* > *Pipelines*
+    * Select the currently *running* job to view progress/result
+    * It is possible to download the job log by clicking on the *Raw* button
 
 ## ISSUES
 

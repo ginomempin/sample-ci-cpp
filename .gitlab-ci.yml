@@ -1,17 +1,6 @@
-image: localhost:5000/cdpf-ubuntu:16.04
+image: localhost:5000/cdpf-ubuntu-cpptests:16.04
 
-# TODO:
-# Create an Ubuntu image with all of these dependencies
-# already installed. This could save time because update
-# and install will need to be done for EACH job (build,
-# run tests, run app) triggered.
 before_script:
-  - apt-get update --yes
-  - apt-get install --yes g++=4:5.3.1-1ubuntu1
-  - apt-get install --yes lcov=1.12-2
-  - apt-get install --yes cmake=3.5.1-1ubuntu3
-  - apt-get install --yes git=1:2.7.4-0ubuntu1.6
-  - apt-get install --yes libpthread-stubs0-dev=0.3-4
   - rm -Rf build  # Guarantee that tests and coverage are using latest src and tests
   - mkdir build
   - cd build

@@ -1,4 +1,4 @@
-image: localhost:5000/cdpf-ubuntu-cpptests:16.04
+image: localhost:5000/ubuntu-cpptests:16.04
 
 before_script:
   - rm -Rf build  # Guarantee that tests and coverage are using latest src and tests
